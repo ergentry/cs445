@@ -1,0 +1,43 @@
+OAuth2 delegates resources to software application. The application
+requests the resource from the owner of the resource and is given a 
+token in return. Those tokens allow the application to access the 
+resource.Tokens allow the applciation to have limited access to the
+resource without having full ownership of that resource. The resource 
+owner can decide which actions can be taken for a given resource and a 
+given token.
+
+OAuth2 is an authorization framework. However it can be argued the OAuth2 
+is actually a delegation protocol. OAuth2 allows for authentication to be
+delegated. A resource owner has access to an API and can give access to 
+that API. The protected resource is the component of
+the resource that the owner has access to. The client is software that 
+accesses the protected resource on behalf of the resource owner. 
+
+OAuth2 relies on an authorization server. This server is trusted by the 
+protected resource to issue the access tokens to the clients. This server
+means that a client must be authorized by the resource owner before the
+client has any access to the protected resource.
+OAuth2 shifts the responsibilites away from the client and onto the 
+Authorization servers. 
+
+Trust On First Use (TOFU) is a method of managing secruity decisions. It
+is not required for OAuth implementations however it is common. It allows
+for flexibility on the user's end without requiring constand authorization.
+The first time a security decision needs to be made during runtime and 
+there is not an exisiting context or configuartion in order to make that
+decision the user is prompted. This prompt can be as simple as "allow this
+application?" but it can also be more complicated. The system then 
+remembers this decsision for later use. TOFU offers a "gray area" of 
+applications. These are not applications that are automatically trusted but
+they also are not applications that need to be automatically untrusted. 
+The user can decide if these applications should have access or not. 
+
+It is important to remember that OAuth is not defined outside of the HTTP
+protocol. OAuth requires a transport layer mechanism like TLS to protect
+the secrets it sends over the wire. OAuth is not an authentication 
+protocol. OAuth does not define a mechanism for user-user delegation. 
+OAuth does not define a token format. OAuth2 does not define cyrptographic
+mehtods. Finally, OAuth2 is not a single protocol. 
+
+Acknowlegement: All of these notes are summarized from Chapter One of
+OAuth2 In Action by Justin Richer and Antonio Sanso
