@@ -1,0 +1,61 @@
+There are two major steps when it comes to an OAuth2 transcation: giving a 
+token and using that token. 
+
+The OAuth2 transaction consists of the following sequence of events:
+1. The Resource Owner indicates to the Client that they would like the
+   Client to act on their behalf
+2. The Client requests authorization from the Resource Owner at the 
+   Authorization Server 
+3. The Resource Owner grants authorization to the Client
+4. The Client recieves a Token from the Authorization Server
+5. The Client presents the Token to the Protected Resource 
+(Richer, Sanso page 22)
+
+An imporatant part of OAuth2 is that the user's authentication goes 
+directly between the user and the authorization server. This means the
+client never sees the user's credentials. OAuth came about to combat that
+problem. OAuth does not dictate the authentication technology. The 
+authorization server is free to choose the method that it would like to use
+
+The core specifications of OAuth are concerned with bearer tokens. These
+tokens follow the rule that anyone who carries the token is allowed to use
+the token. 
+
+There are four main actors in an OAuth system. There are clients, resource
+owners, authorization servers and protected resources. The client is often
+the simplest component. Its responsibilites include obtaining tokens from
+the authorization server and using tokens at the protected resource. The 
+client does not need to understand the token. To the client the token is
+just a string that it is passing around. A protected resource is available
+through an HTTP server and requires a token to be accessed. The protected
+resource has the final say as to whether or not a token is valid. A 
+resource owner is the entity that can give access to the client. Unlike 
+the other parts of the OAuth system the resource owner is not software. The
+authorization server is the central point of the architecture. It is also 
+an HTTP server. The authorization server is the place where clients can 
+get their token, resource owners can authorize those clients and the 
+resource owner can be authenticated. 
+
+An OAuth access token, also known as just a token, is an artifact issued by
+the authorization server to a client. This token indicates the rights that
+a client has been given by the resource owner. There is no defined format
+for a token. Tokens are opaque to the client. Tokens are not opaque to the
+authorization server or the protected resource. Both of those need to be 
+able to understand the token and what it stands for. 
+
+Scope is OAuth is a representation of a set of rights at a protected 
+resource. Scopes are represented by strings. The scope is an important 
+mechanism to restrict the access granted to a client. Clients can request
+certain scopes based on what they need. However, if the client needs to add
+a scope they have to redo the OAuth process and recieve a new token that 
+will give the client access to both scopes. 
+
+Refresh tokens are used to request new access tokens without involving the
+resource owner. If a token expires for any number of reasons and the 
+resource owner is not there to regrant access then a refresh token can be
+used to try again. 
+
+An authorization grant is the method for getting a token. 
+
+Acknowlegement: All of these notes are summarized from Chapter Two of
+OAuth2 In Action by Justin Richer and Antonio Sanso
