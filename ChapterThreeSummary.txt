@@ -1,0 +1,15 @@
+Chapter Three included building a simple OAuth Client. As mentioned 
+previously because of the set up of the OAuth protocol the client is 
+usually the simplest component. The client needs to use an access token
+that is has been given to gain access to the protected resource. 
+ChapterThreeClient.js goes about setting up the client to be sent to the 
+authorization server who will then deal with getting the token from the 
+protected resource owner and then returning that token to the client. 
+ChapterThreeClientTwo.js deals with the concept of refresh tokens. If a 
+refresh token is available to the client the refresh token can be used to 
+get access to a new token without involving the protected resource owner
+again. These tokens are useful for the case where something has happened to
+the original token and the end user is no longer available to regrant a 
+token. Actually using the token is even simpler than gaining the token and
+can be done with a HTTP header that can be added to any HTTP call. 
+
