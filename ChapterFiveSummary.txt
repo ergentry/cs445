@@ -1,0 +1,12 @@
+This chapter covers building a simple OAuth authorization server. 
+
+During the design of the OAuth2 protocol whenever possible the complexity
+was taken away from the client and the protected resource and given to 
+the authorization server. The thought behind this was that there are many
+more clients and protected resources than there are authorization servers.
+So if there is going to be a complicated part it makes sense to have it be
+the one that happens the least. 
+
+The authorization server is required to have two endpoints. It has to have
+an authorization endpoint which serves the front-channel interactions and 
+the token endpoint which serves the back-channel interactions. 
