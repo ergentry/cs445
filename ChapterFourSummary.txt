@@ -1,0 +1,30 @@
+This chapter covers building a simple OAuth protected resource server. 
+The protected resource needs to do is parse the OAuth token from the 
+HTTP request, validate that token and determine what kinds of requests the
+token is good for. The protected resource and the authorization server
+are two separate parts in OAuth but in practice often times they are paired
+together in one location. 
+
+The protected resource that I will be modifying is set up to expect bearer
+tokens. There are three ways to pass bearer tokens to the protected 
+resource, the HTTP Authorization header, inside a form encoded POST body, 
+and as a query parameter. Our protected resource will accept all three
+varients. However, there is preference given to the HTTP Authorization
+Header. A query paramter is a last resort method beause there is a higher
+probability of being inadvertantly logged in server access logs or leaked
+through referrer headers.
+
+OAuth allows for different clients to have different levels of access to 
+the protected resource. Not every client will need to be able to access
+every part of the resource. For example, a photo printing app needs to be
+able to read the photos but may not need to be able to write to the photos
+unless an editing functionality is present. The token passed now will also
+include the scope that the client is allowed to access.
+
+Each scope can have a different funciton to check and delegate the 
+resources as shown in chapter four exercise two or there can be one big
+function that handles it all as shown in chapter four exercise three.
+
+OAuth has chosen to stay out of the authorization decision making process. 
+
+Resource servers have the final say in what a token means. 
