@@ -1,0 +1,45 @@
+After implementing the three main parts of the OAuth protocol I will now
+be researching some common threats and considerations to have when 
+implementing the Authorization Server. As mentioned in previous sections 
+that is the most complicated part of the OAuth protocol and therefore
+is also the most vulnerable. 
+
+I will summarize some of the known issues from the website 
+https://www.oauth.com/oauth2-servers/authorization/security-considerations/
+
+Phishing Attacks
+
+The threat of this is that an attacker can make a webpage that looks 
+identical web page. Those fake web pages usually include a password and
+user name field. The attacker then has access to that data. One way to be
+successful with this attack is to embed the phishing page in an embedded
+web view. This is successful becasue embedded web views do not show 
+the address bar for the website and then the user does not know that 
+they are visiting a fradulent site. 
+
+A way to avoid this is to not allow OAuth authorization in the format 
+of a webview despite the convience that it may offer. 
+
+It should also be ensured that the authorization server is using https in
+order to avoid DNS spoofing. 
+
+Clickjacking attacks 
+
+This is an attack where a transparent layer is over the real authorization
+button. The user has no way to know that they are really clicking on a 
+malicious button. This will grant access to the attacks application instead
+of the intended applicaiton without the user's knowledge. 
+
+The authorization URL hould always be loaded directly in a native browser
+and not embedded in an iframe. 
+
+Redirect URL Manipulation
+
+The cient id is a known, good application but the redirect URL is one that 
+is under the control of an attacker. If the authorization server does not 
+validate redirect URLs and the attacker uses "token" response then the 
+user will go back to the attacker's application with the access token in 
+the URL as was demonstrated in the coding examples provided. 
+
+A way to prevent this attack is by only redirecting to registered/approved
+URLs. All redirect URLs should be https. 
